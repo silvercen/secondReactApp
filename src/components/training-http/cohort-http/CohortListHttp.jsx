@@ -1,13 +1,22 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router"
 
-export default function CohortList()
+export default function CohortListHttp()
 {
     const navigate = useNavigate()
     const [allCohorts, setAllCohorts] = useState([])
 
     const [filteredAllCohorts, setFilteredAllCohorts] = useState([...allCohorts])
     const [allVenues, setAllVenues] = useState([])
+
+    useEffect(() => {
+        fetch("http://localhost:3000/cohorts")
+            .then((res) => res.json())
+            .then((data) => {
+                setAllCohorts([...data])
+                setFilteredAllCohorts([...data])
+            })
+    }, [])
 
     function handleView(cohortId)
     {

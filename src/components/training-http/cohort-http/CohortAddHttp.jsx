@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export default function CohortAdd()
+export default function CohortAddHttp()
 {
     const [cohort, setCohort] = useState(
         {

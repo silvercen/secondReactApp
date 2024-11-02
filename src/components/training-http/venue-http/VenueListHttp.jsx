@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export default function VenueList()
+export default function VenueListHttp()
 {
     const [allVenues, setAllVenues] = useState([])
 

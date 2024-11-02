@@ -33,6 +33,16 @@ export default function HeaderApp()
                         <Link to="/training" className="nav-link text-white">
                             Training
                         </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/training-http" className="nav-link text-white">
+                            Training Http
+                        </Link>
+                   </li>
+                   <li className="nav-item">
+                        <Link to="/fake-api" className="nav-link text-white">
+                            Fake API
+                        </Link>
                    </li>
                </ul>
            </div>
