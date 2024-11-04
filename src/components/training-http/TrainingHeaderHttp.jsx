@@ -1,5 +1,5 @@
 import { Link, Outlet } from 'react-router-dom'
-export default function TrainingHeader()
+export default function TrainingHeaderHttp()
 {
     return (
        <>
@@ -7,20 +7,20 @@ export default function TrainingHeader()
            <div className="container-fluid">
                <ul className="navbar-nav">
                    <li className="nav-item">
-                       <Link to="/training/venue-list-http" className="nav-link text-white">Venue List</Link>
+                       <Link to="/training-http/venue-list-http" className="nav-link text-white">Venue List</Link>
                    </li>
                    <li className="nav-item">
-                        <Link to="/training/cohort-list-http" className="nav-link text-white">
+                        <Link to="/training-http/cohort-list-http" className="nav-link text-white">
                             Cohort List
                         </Link>
                    </li>
                    <li className="nav-item">
-                        <Link to="/training/cohort-add-http" className="nav-link text-white">
+                        <Link to="/training-http/cohort-add-http" className="nav-link text-white">
                             Add Cohort
                         </Link>
                    </li>
                    <li className="nav-item">
-                        <Link to="/training/venue-add-http" className="nav-link text-white">
+                        <Link to="/training-http/venue-add-http" className="nav-link text-white">
                             Add Venue 
                         </Link>
                    </li>

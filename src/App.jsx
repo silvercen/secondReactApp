@@ -24,6 +24,7 @@ import CohortListHttp from './components/training-http/cohort-http/CohortListHtt
 import CohortViewHttp from './components/training-http/cohort-http/CohortViewHttp'
 import CohortAddHttp from './components/training-http/cohort-http/CohortAddHttp'
 import VenueAddHttp from './components/training-http/venue-http/VenueAddHttp'
+import TrainingHeaderHttp from './components/training-http/TrainingHeaderHttp'
 
 function App() {
   return (
@@ -46,7 +47,7 @@ function App() {
           <Route path='cohort-add' element={<CohortAdd/>}></Route>
           <Route path='venue-add' element={<VenueAdd/>}></Route>
         </Route>
-        <Route path='/training-http' element={<TrainingHeader/>}>
+        <Route path='/training-http' element={<TrainingHeaderHttp/>}>
           <Route path='venue-list-http' element={<VenueListHttp/>}></Route>
           <Route path='cohort-list-http' element={<CohortListHttp/>}></Route>
           <Route path='cohort-view-http/:cid' element={<CohortViewHttp/>}></Route>

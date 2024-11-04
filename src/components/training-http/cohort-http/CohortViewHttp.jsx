@@ -1,10 +1,29 @@
+import { useEffect, useState } from "react"
 import { useLocation, useNavigate, useParams } from "react-router"
 
 export default function CohortViewHttp()
 {
+    const baseUrl = "http://localhost:3000/cohorts"
+    let [fetchedCohort, setFetchedCohort] = useState(
+        {
+            cohortId: 0,
+            cohortSize: 0,
+            cohortVenueId: 0,
+            cohortStack: "",
+            cohortStartDate: "",
+            cohortDurationWeeks: 0,
+            cohortSPOC: "",
+            cohortInstructor: ""
+        }
+    )
     let {cid} = useParams()
     let navigate = useNavigate()
-    let {state}  = useLocation()
+    
+    useEffect(() => {
+        fetch(baseUrl + "/" + cid)
+            .then((res) => res.json)
+            .then((data) => setFetchedCohort(data))
+    }, [])
 
     return (
         <>
@@ -16,10 +35,10 @@ export default function CohortViewHttp()
                     <h3>Cohort details for cohort id: {cid}</h3>
                 </div>
                 <div className="card-body">
-                    <h6>Cohort Stack: {state.cohortStack}</h6>
-                    <h6>Cohort Size: {state.cohortSize}</h6>
-                    <h6>Cohort Duration: {state.cohortDurationWeeks}</h6>
-                    <h6>Cohort Start Date: {state.cohortStartDate.toDateString()}</h6>
+                    <h6>Cohort Stack: {fetchedCohort.cohortStack}</h6>
+                    <h6>Cohort Size: {fetchedCohort.cohortSize}</h6>
+                    <h6>Cohort Duration: {fetchedCohort.cohortDurationWeeks}</h6>
+                    <h6>Cohort Start Date: {new Date (fetchedCohort.cohortStartDate).toDateString()}</h6>
                 </div>
             </div>
         </div>

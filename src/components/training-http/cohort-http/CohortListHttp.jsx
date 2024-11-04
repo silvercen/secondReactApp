@@ -3,27 +3,31 @@ import { useNavigate } from "react-router"
 
 export default function CohortListHttp()
 {
+    const baseUrl = "http://localhost:3000/cohorts"
     const navigate = useNavigate()
     const [allCohorts, setAllCohorts] = useState([])
 
     const [filteredAllCohorts, setFilteredAllCohorts] = useState([...allCohorts])
     const [allVenues, setAllVenues] = useState([])
 
-    useEffect(() => {
-        fetch("http://localhost:3000/cohorts")
+    async function loadAllCohorts()
+    {
+        await fetch(baseUrl)
             .then((res) => res.json())
             .then((data) => {
                 setAllCohorts([...data])
                 setFilteredAllCohorts([...data])
             })
+    }
+
+    useEffect(() => {
+        loadAllCohorts()
     }, [])
 
     function handleView(cohortId)
     {
         console.log(cohortId)
-        let getCohort = allCohorts.find((eachCohort) => eachCohort.cohortId === cohortId)
-        console.log(getCohort)
-        navigate("/training/cohort-view/"+ cohortId, {state: getCohort})
+        navigate("/training-http/cohort-view-http/"+ cohortId)
     }
 
     function handleEdit(cohortId)
@@ -33,9 +37,12 @@ export default function CohortListHttp()
 
     function handleDelete(cohortId)
     {
-        let newCohorts = allCohorts.filter((eachCohort) => (eachCohort.cohortId != cohortId))
-        setAllCohorts(newCohorts)
-        setFilteredAllCohorts(newCohorts)
+        // let newCohorts = allCohorts.filter((eachCohort) => (eachCohort.cohortId != cohortId))
+        // setAllCohorts(newCohorts)
+        // setFilteredAllCohorts(newCohorts)(
+        let cohort = allCohorts.find((eachCohort) => (eachCohort.cohortId == cohortId))
+        fetch(baseUrl+"/"+cohort.id, { method: "DELETE" }).then(res => res.json)
+            .then(data => loadAllCohorts())
     }
 
     let mappedAllCohorts = filteredAllCohorts.map((eachCohort) => (
